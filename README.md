@@ -1,4 +1,4 @@
-# Deque Programming Languages
+# Deque Programming Language
 
 Inspired by https://www.concatenative.org/wiki/view/Deque
 
