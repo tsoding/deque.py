@@ -25,7 +25,7 @@ if __name__ == '__main__':
             if word.endswith(':'):
                 word = word[:-1]
                 if word in labels:
-                    raise RuntimeError(f"Label `{word}` already defined")
+                    raise NameError(f"Label `{word}` already defined")
                 labels[word] = ip
 
         data = deque()
@@ -48,7 +48,7 @@ if __name__ == '__main__':
 
             def push_data(value):
                 if left is None:
-                    raise RuntimeError(f"Direction is not provided for {word} at {ip}")
+                    raise SyntaxError(f"Direction is not provided for {word} at {ip}")
                 if left:
                     data.appendleft(value)
                 else:
@@ -56,7 +56,7 @@ if __name__ == '__main__':
 
             def pop_data():
                 if left is None:
-                    raise RuntimeError(f"Direction is not provided for {word} at {ip}")
+                    raise SyntaxError(f"Direction is not provided for {word} at {ip}")
                 if left:
                     return data.popleft()
                 else:
