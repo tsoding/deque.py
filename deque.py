@@ -155,7 +155,7 @@ if __name__ == '__main__':
             elif word == 'exit':
                 exit(0)
             elif word == 'trace':
-                print(''.join(list(map(lambda x: '*' if x == 1 else ' ', data))))
+                print(''.join(map(lambda x: '*' if x == 1 else ' ', data)))
                 ip += 1
             else:
                 try:
