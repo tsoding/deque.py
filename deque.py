@@ -157,11 +157,10 @@ if __name__ == '__main__':
             elif word == 'trace':
                 print(''.join(list(map(lambda x: '*' if x == 1 else ' ', data))))
                 ip += 1
+            elif word in labels:
+                push_data(labels[word])
+                ip += 1
             else:
-                try:
-                    push_data(int(word))
-                    ip += 1
-                except ValueError:
-                    push_data(labels[word])
-                    ip += 1
+                push_data(int(word))
+                ip += 1
         if tracing: print(data)
