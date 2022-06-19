@@ -10,4 +10,4 @@ $ ./deque.py rule110.deque
 
 ## Screencast
 
-[![thumbnail](https://i3.ytimg.com/vi/WvwU0wdkB8U/maxresdefault.jpg)](https://www.youtube.com/watch?v=WvwU0wdkB8U)
+[![thumbnail](./thumbnail.png)](https://www.youtube.com/watch?v=WvwU0wdkB8U)
