@@ -16,8 +16,7 @@ if __name__ == '__main__':
         program = [word
                    for line in f.read().splitlines()
                    if not line.lstrip().startswith('#')
-                   for word in line.split(' ')
-                   if len(word) > 0]
+                   for word in line.split()]
 
         labels = {}
         for ip in range(len(program)):
