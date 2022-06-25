@@ -3,17 +3,17 @@
 0! 0! 0! 0! 0! 0! 0! 0! 0! 0! 0! 1! 0!
 40!
 
-outer: 1! sub! dup! 2! eq! outer_end! jmpif!
+outer: 1! -! dup! 2! ==! outer_end! jmpif!
   trace
 
-  !1 !shl !7 !and !or
+  !1 !shl !7 !&& !||
   
   0!
     loop: !over !2 !< !end !jmpif
-      !1 !shl !7 !and !or
+      !1 !shl !7 !&& !||
     
       !dup !1 !swap !shl
-      !110 !swap !and
+      !110 !swap !&&
       !over !shr
       !move
     !loop !jmp
