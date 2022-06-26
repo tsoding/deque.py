@@ -31,6 +31,10 @@ if __name__ == '__main__':
         data = deque()
 
         ip = 0
+
+        buffer = ''
+        bufferleft = None
+
         while ip < len(program):
             word = program[ip]
             if tracing:
@@ -62,12 +66,12 @@ if __name__ == '__main__':
                 else:
                     return data.pop()
 
-            if word == 'add':
+            if word == '+':
                 a = pop_data()
                 b = pop_data()
                 push_data(a + b)
                 ip += 1
-            elif word == 'sub':
+            elif word == '-':
                 a = pop_data()
                 b = pop_data()
                 push_data(b - a)
@@ -109,17 +113,17 @@ if __name__ == '__main__':
                 b = pop_data()
                 push_data(b << a)
                 ip += 1
-            elif word == 'eq':
+            elif word == '==':
                 a = pop_data()
                 b = pop_data()
                 push_data(a == b)
                 ip += 1
-            elif word == 'or':
+            elif word == '||':
                 a = pop_data()
                 b = pop_data()
                 push_data(a | b)
                 ip += 1
-            elif word == 'and':
+            elif word == '&&':
                 a = pop_data()
                 b = pop_data()
                 push_data(a & b)
@@ -152,15 +156,44 @@ if __name__ == '__main__':
             elif word == 'print':
                 print(pop_data())
                 ip += 1
+            elif word == 'printType':
+                print(type(pop_data()))
+                ip += 1
             elif word == 'exit':
                 exit(0)
             elif word == 'trace':
                 print(''.join(list(map(lambda x: '*' if x == 1 else ' ', data))))
                 ip += 1
+            elif word.startswith("'") and word.endswith("'"):
+                word = word[1:]
+                word = word[:-1]
+                push_data(word)
+                ip += 1
+            elif word.startswith("'"):
+                bufferleft = left
+                word = word[1:]
+                buffer += word + ' '
+                ip += 1
+            elif word.endswith("'"):
+                left = bufferleft
+                word = word[:-1]
+                buffer += word
+                push_data(buffer)
+                buffer = ''
+                bufferleft = None
+                left = None
+                ip += 1
+            elif "." in word:
+                push_data(float(word))
+                ip += 1
             else:
                 try:
-                    push_data(int(word))
-                    ip += 1
+                    if buffer != '':
+                        buffer += word + ' '
+                        ip += 1
+                    else:
+                        push_data(int(word))
+                        ip += 1
                 except ValueError:
                     push_data(labels[word])
                     ip += 1
